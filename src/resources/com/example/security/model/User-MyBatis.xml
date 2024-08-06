@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="User">
+
+	<insert id="Insert" parameterType="map">
+		insert into	apssdc.student(myname,fathername,mobileno,email,gender,address)
+		values(#{p.myname},#{p.fathername},#{p.mobileno},#{p.email},#{p.gender},#{p.address})
+	</insert>
+
+	 <select id="getAll" resultType="UserModel">
+		SELECT myname,fathername,mobileno,email,gender,address from apssdc.student;
+	  </select> 
+	  
+	   <select id="getById" resultType="UserModel">
+		SELECT myname,fathername,mobileno,email,gender,address from apssdc.student WHERE myname = #{name};
+	  </select>
+
+	<delete id="deleteData" parameterType="java.lang.String">
+		delete from apssdc.student where myname = #{name};
+	</delete>
+	
+	<update id="updateData"  parameterType="map">
+		update apssdc.student SET fathername=#{p.fathername},mobileno=#{p.mobileno},
+		email=#{p.email},gender=#{p.gender},address=#{p.address} WHERE myname=#{p.myname};
+	</update>
+	
+</mapper>	                                    
